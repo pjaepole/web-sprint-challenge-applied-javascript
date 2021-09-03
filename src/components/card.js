@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const Card = (article) => {
   // TASK 5
   // ---------------------
@@ -17,6 +19,44 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
+  // axios.get(`http://localhost:5000/api/articles`)
+  // .then(response=>{
+  // console.log('task6',response.data.articles);
+  // const articleInformation={authorName:response.data.articles.authorName, authorPhoto:response.data.articles.authorPhoto, headline:response.data.articles.headline,};
+
+  
+  
+
+
+  const divCard= document.createElement('div');
+      const divHeadline=document.createElement('div');
+      const divAuthor=document.createElement('div');
+          const divImgContainer=document.createElement('div');
+              const imgAuthorPhoto=document.createElement('img');
+          const spanAuthorName=document.createElement('span');
+
+  divCard.classList.add('card');
+      divHeadline.classList.add('headline');
+      divAuthor.classList.add('author');
+        divImgContainer.classList.add('img-container');
+            
+
+        divHeadline.textContent=article.headline;
+        imgAuthorPhoto.src=article.authorPhoto;
+        spanAuthorName.textContent=`By  ${article.authorName}`;
+
+
+  divCard.appendChild(divHeadline);
+  divCard.appendChild(divAuthor);
+      divAuthor.appendChild(divImgContainer);
+          divImgContainer.appendChild(imgAuthorPhoto);
+      divAuthor.appendChild(spanAuthorName);
+
+      divCard.addEventListener('click',()=>[
+        console.log(`${headline}`)
+      ])
+
+return divCard;
 }
 
 const cardAppender = (selector) => {
@@ -28,6 +68,42 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
+
+  const cardsContainerr=document.querySelector(selector);
+  axios.get(`http://localhost:5000/api/articles`)
+    .then(res=>{
+    console.log('task6',res.data.articles);
+    console.log('task6',res.data);
+    const javaS=res.data.articles.javascript;
+    const jque=res.data.articles.jquery;
+    const bootS=res.data.articles.bootstrap;
+    const node=res.data.articles.node;
+    const technology=res.data.articles.technology;
+
+    
+
+    javaS.forEach(element => {
+      cardsContainerr.appendChild(Card(element));
+      
+    });
+
+    jque.forEach(elem =>{
+      cardsContainerr.appendChild(Card(elem));
+    });
+    
+    node.forEach(elem =>{
+      cardsContainerr.appendChild(Card(elem));
+    });
+    
+    bootS.forEach(elem =>{
+      cardsContainerr.appendChild(Card(elem));
+    });
+
+    technology.forEach(elem =>{
+      cardsContainerr.appendChild(Card(elem));
+    });
+    
+  })
 }
 
 export { Card, cardAppender }
