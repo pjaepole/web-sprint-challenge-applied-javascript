@@ -13,9 +13,9 @@ const Header = (title, date, temp) => {
 
 
  // add textcontent
-  spanDate.textContent="date";
-  hOne.textContent="title";
-  spanTemp.textContent="temp";
+  spanDate.textContent=`${date}`;
+  hOne.textContent=`${title}`;
+  spanTemp.textContent=`${temp}`;
 
 
 
