@@ -19,11 +19,7 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
-  // axios.get(`http://localhost:5000/api/articles`)
-  // .then(response=>{
-  // console.log('task6',response.data.articles);
-  // const articleInformation={authorName:response.data.articles.authorName, authorPhoto:response.data.articles.authorPhoto, headline:response.data.articles.headline,};
-
+  //
   
   
 
@@ -53,7 +49,7 @@ const Card = (article) => {
       divAuthor.appendChild(spanAuthorName);
 
       divCard.addEventListener('click',()=>[
-        console.log(`${headline}`)
+        console.log(article.headline)
       ])
 
 return divCard;
